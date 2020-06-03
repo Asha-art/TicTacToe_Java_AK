@@ -6,7 +6,7 @@ public class TicTacToeClass {
     // Constructors
     public TicTacToeClass() {
         board = new char[3][3];
-        turns = 1;
+        turns = 0;
 
         for (int r = 0; r < 3; r++)
             for (int c = 0; c < 3; c++)
@@ -40,16 +40,17 @@ public class TicTacToeClass {
     }
 
     public boolean isFull() {
-
-        return false;
+        if (turns != 9)
+            return false;
+        else
+            return true;
     }
 
     public boolean isCat() {
-        // while (turns > 9) {
-        // System.out.println("All boxes filled, It's a tie");
-        // break;
-        // }
-        return true;
+        if (!isWinner('X') && isFull() && !isWinner('O'))
+            return true;
+        return false;
+
     }
 
     public boolean isValid(int r, int c) {
@@ -60,9 +61,8 @@ public class TicTacToeClass {
     }
 
     public int numTurns() {
-        System.out.print("This is turn " + turns + ", ");
-        turns++;
-
+        // System.out.print("This is turn " + turns + ", ");
+        // turns++;
         return turns;
     }
 
@@ -85,21 +85,13 @@ public class TicTacToeClass {
     // Modifiers
 
     public void playMove(char p, int r, int c) {
-        board[r][c] = p;
-
-        // prints who won the game if 'X' or 'O' or if it's a tie
-
-        if (isWinner('X')) {
-            System.out.println("\n\n '" + p + "' wins the game!");
-
-        } else if (isWinner('O')) {
-            System.out.println("\n\n'" + p + "' wins the game!");
-
-        } else if (turns > 9) {// checks if all boxes are filled then tie
-            System.out.println("\n\n All boxes are filled, This game is a tie.");
-            displayBoard();
-            System.exit(0);
-        }
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
+                if (i == r && j == c) {
+                    board[r][c] = p;
+                    turns++;
+                }
+            }
 
     }
 
