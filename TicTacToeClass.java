@@ -87,7 +87,7 @@ public class TicTacToeClass {
     public void playMove(char p, int r, int c) {
         board[r][c] = p;
 
-        // prints who won the game
+        // prints who won the game if 'X' or 'O' or if it's a tie
 
         if (isWinner('X')) {
             System.out.println("\n\n '" + p + "' wins the game!");
